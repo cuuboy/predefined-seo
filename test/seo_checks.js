@@ -60,15 +60,21 @@ describe('#checkHead', () => {
     done();
   })
 
-  it('returns meta name="keywords" missing  from head tag', done => {
+  it('detects meta attribute name="keywords" missing from head tag', done => {
     var doc = '<html><head><title></title><meta name="descriptions" /></head></html>';
     checks.checkHead(doc).should.equal('<meta> with name="keywords" is missing');
     done();
   })
 
-  it('returns meta attributes missing when head tag does not contain title tag', done => {
+  it('detects meta attribute name="descriptions" missing from head tag', done => {
     var doc = '<html><head><title></title><meta name="keywords" /></head></html>';
     checks.checkHead(doc).should.equal('<meta> with name="descriptions" is missing');
+    done();
+  })
+
+  it('returns null when head tag is good', done => {
+    var doc = '<html><head><title></title><meta name="descriptions" /><meta name="keywords" /></head></html>';
+    should(checks.checkHead(doc)).equal(null);
     done();
   })
 })
