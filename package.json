@@ -26,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/cuuboy/seo_checks/issues"
   },
-  "homepage": "https://github.com/cuuboy/seo_checks#readme"
+  "homepage": "https://github.com/cuuboy/seo_checks#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
