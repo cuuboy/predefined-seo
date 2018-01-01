@@ -70,7 +70,7 @@ There are 1 <img> tag without alt attribute
     * Detect if header doesn’t have <meta name=“descriptions” ... /> tag.
     * Detect if header doesn’t have <meta name=“keywords” ... /> tag.
   * checkStrong: Detect if there’re more than a certain number of <strong> tag in HTML(default is 15).
-  * checkH1: Detect if a HTML have more than 1 <h1> tag.
+  * checkH1: Detect if a HTML have more than 1 `<h1>` tag.
   
  * To add more rules, please refer to 
  ` https://github.com/cuuboy/seo_checks/blob/master/lib/predefined_rules.js` and use existing query functions or add / improve more query function at `https://github.com/cuuboy/seo_checks/blob/master/lib/tag_queries.js`
