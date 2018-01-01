@@ -78,3 +78,41 @@ describe('#checkHead', () => {
     done();
   })
 })
+
+describe('#checkStrong', () => {
+  it('returns error when <strong> tag is more than 15 times(default)', done => {
+    var doc = '<div>\
+                <strong>1</strong>\
+                <strong>2</strong>\
+                <strong>3</strong>\
+                <strong>4</strong>\
+                <strong>5</strong>\
+                <strong>6</strong>\
+                <strong>7</strong>\
+                <strong>8</strong>\
+                <strong>9</strong>\
+                <strong>10</strong>\
+                <strong>11</strong>\
+                <strong>12</strong>\
+                <strong>13</strong>\
+                <strong>14</strong>\
+                <strong>15</strong>\
+                <strong>16</strong>\
+              </div>';
+
+    checks.checkStrong(doc).should.equal('This document has more than 15 <strong> tag');
+    done();
+  })
+
+  it('returns error when <strong> tag is more than a given number', done => {
+    var doc = '<div>\
+                <strong>1</strong>\
+                <strong>2</strong>\
+                <strong>3</strong>\
+                <strong>4</strong>\
+              </div>';
+
+    checks.checkStrong(doc, 3).should.equal('This document has more than 3 <strong> tag');
+    done();
+  })
+})
