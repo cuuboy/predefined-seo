@@ -115,4 +115,16 @@ describe('#checkStrong', () => {
     checks.checkStrong(doc, 3).should.equal('This document has more than 3 <strong> tag');
     done();
   })
+
+  it('returns null when number of strong tag is good', done => {
+    var doc = '<div>\
+                <strong>1</strong>\
+                <strong>2</strong>\
+                <strong>3</strong>\
+                <strong>4</strong>\
+              </div>';
+
+    should(checks.checkStrong(doc, 10)).equal(null);
+    done();
+  })
 })
