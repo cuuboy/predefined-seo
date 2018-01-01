@@ -1,6 +1,17 @@
 const should = require('should')
 const query = require('../lib/tag_queries')
 
+describe('#findTags', () => {
+  it('returns tags with content', done => {
+    var doc = '<div><img src="localhost/test.jpg" /><img src="localhost/test.jpg" /></div>';
+
+    query.findTags(doc, 'img').
+      should.eql(['<img src="localhost/test.jpg" />', '<img src="localhost/test.jpg" />']);
+
+    done();
+  });
+});
+
 describe('#countTag', () => {
   it('returns number of given tag name', done => {
     var doc = '<img src="localhost/test.jpg" /><img src="localhost/test.jpg" />';
