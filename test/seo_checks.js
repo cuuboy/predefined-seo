@@ -128,3 +128,24 @@ describe('#checkStrong', () => {
     done();
   })
 })
+
+describe('#checkH1', () => {
+  it('returns error when <h1> tag is more than 1 time', done => {
+    var doc = '<body>\
+                <h1>Article Title1</h1>\
+                <h1>Article Title2</h1>\
+              </body>';
+
+    checks.checkH1(doc).should.equal('This document has more than 1 <h1> tag');
+    done();
+  })
+
+  it('returns null when number of h1 tag is good', done => {
+    var doc = '<body>\
+                <h1>Article Title</h1>\
+              </body>';
+
+    should(checks.checkH1(doc)).equal(null);
+    done();
+  })
+})
