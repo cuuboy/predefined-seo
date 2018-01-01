@@ -1,5 +1,5 @@
-const should = require('should')
-const rules = require('../lib/predefined_rules')
+const should = require('should');
+const rules = require('../lib/predefined_rules');
 
 describe('#checkImg', () => {
   it('returns number of img tags without alt attribute', done => {
