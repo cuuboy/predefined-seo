@@ -63,13 +63,13 @@ There are 1 <img> tag without alt attribute
 
 ## How to add more rules?
 * Currently, pre-defined rules are:
-  * checkImg: Detect if any <img /> tag without alt attribute.
-  * checkLink: Detect if any <a /> tag without rel attribute.
+  * checkImg: Detect if any `<img />` tag without alt attribute.
+  * checkLink: Detect if any `<a />` tag without rel attribute.
   * checkHead:
-    * Detect if header doesn’t have <title> tag.
-    * Detect if header doesn’t have <meta name=“descriptions” ... /> tag.
-    * Detect if header doesn’t have <meta name=“keywords” ... /> tag.
-  * checkStrong: Detect if there’re more than a certain number of <strong> tag in HTML(default is 15).
+    * Detect if header doesn’t have `<title>` tag.
+    * Detect if header doesn’t have `<meta name=“descriptions” ... />` tag.
+    * Detect if header doesn’t have `<meta name=“keywords” ... />` tag.
+  * checkStrong: Detect if there’re more than a certain number of `<strong>` tag in HTML(default is 15).
   * checkH1: Detect if a HTML have more than 1 `<h1>` tag.
   
  * To add more rules, please refer to 
