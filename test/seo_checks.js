@@ -43,3 +43,27 @@ describe('#checkWithRules', () => {
           });
     });
 });
+
+describe('#checkHtmlFile', () => {
+    it('returns null when html file is good', done => {
+        var rules = ['checkImg', 'checkLink', 'checkHead', 'checkStrong', 'checkH1'];
+        
+        checks.checkHtmlFile(__dirname + '/fixtures/good_html.html', rules).
+            then(function(errors) {
+                should(errors).equal(null);
+            }).done(function() {
+                done();
+            });
+    });
+
+    it('returns error when html file violates rules', done => {
+        var rules = ['checkImg', 'checkLink', 'checkHead', 'checkStrong', 'checkH1'];
+        
+        checks.checkHtmlFile(__dirname + '/fixtures/missing_meta_html.html', rules).
+            then(function(errors) {
+                should(errors).equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
+            }).done(function() {
+                done();
+            });
+    });
+});

@@ -4,7 +4,8 @@
   "description": "A little helper for checking SEO",
   "main": "index.js",
   "dependencies": {
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "q": "^1.5.1"
   },
   "devDependencies": {
     "mocha": "^4.1.0",
