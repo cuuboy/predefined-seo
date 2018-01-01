@@ -3,10 +3,37 @@ const checks = require('../lib/seo_checks')
 const fs = require('fs');
 
 describe('#checkWithRules', () => {
-    it('returns number of img tags without alt attribute', done => {
+    it('returns null when html file is good', done => {
         var rules = ['checkImg', 'checkLink', 'checkHead', 'checkStrong', 'checkH1'];
 
         fs.readFile(__dirname + '/fixtures/good_html.html',function (err, file) {
+            if (err) {
+              throw err; 
+            }
+            
+            should(checks.checkWithRules(file.toString(), rules)).equal(null);
+            done();
+          });
+    });
+
+    it('detects missing meta', done => {
+        var rules = ['checkImg', 'checkLink', 'checkHead', 'checkStrong', 'checkH1'];
+
+        fs.readFile(__dirname + '/fixtures/missing_meta_html.html',function (err, file) {
+            if (err) {
+              throw err; 
+            }
+            
+            should(checks.checkWithRules(file.toString(), rules)).
+                equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
+            done();
+          });
+    });
+
+    it('does report error if user skip <head> checks', done => {
+        var rules = ['checkImg', 'checkLink', 'checkStrong', 'checkH1'];
+
+        fs.readFile(__dirname + '/fixtures/missing_meta_html.html',function (err, file) {
             if (err) {
               throw err; 
             }
