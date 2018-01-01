@@ -1,6 +1,6 @@
 {
   "name": "seo_checks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A little helper for checking SEO",
   "main": "index.js",
   "dependencies": {
