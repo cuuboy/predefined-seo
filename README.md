@@ -11,7 +11,7 @@ This is a small project that helps you to perform seo checks, it is a light weig
 
 ## How to run the test?
 
-* simply run `mocha`
+* simply run `npm test`
 
 If you got 
 
@@ -46,6 +46,18 @@ With provided example file:
 ```
 
 And use this in your code:
+
+Recommended:
+
+```javascript
+const checks = require('seo_checks');
+
+checks.start().fromFile(__dirname + '/test.html').then(function(seoCheck) {
+    return seoCheck.checkImg().checkLink().checkHead().checkStrong().checkH1().toFile(outputFile);
+})
+```
+
+Or you can choose in this way:
 
 ```javascript
 const checks = require('seo_checks');
