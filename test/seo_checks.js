@@ -11,7 +11,7 @@ describe('#checkWithRules', () => {
               throw err; 
             }
             
-            should(checks.checkWithRules(file.toString(), rules).content()).equal(null);
+            should(checks.checkWithRules(file.toString(), rules).report()).equal(null);
             done();
           });
     });
@@ -24,7 +24,7 @@ describe('#checkWithRules', () => {
               throw err; 
             }
             
-            should(checks.checkWithRules(file.toString(), rules).content()).
+            should(checks.checkWithRules(file.toString(), rules).report()).
                 equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
             done();
           });
@@ -38,7 +38,7 @@ describe('#checkWithRules', () => {
               throw err; 
             }
             
-            should(checks.checkWithRules(file.toString(), rules).content()).equal(null);
+            should(checks.checkWithRules(file.toString(), rules).report()).equal(null);
             done();
           });
     });
@@ -50,7 +50,7 @@ describe('#checkHtmlFile', () => {
         
         checks.checkHtmlFile(__dirname + '/fixtures/good_html.html', rules).
             then(function(result) {
-                should(result.content()).equal(null);
+                should(result.report()).equal(null);
             }).done(done);
     });
 
@@ -59,7 +59,7 @@ describe('#checkHtmlFile', () => {
         
         checks.checkHtmlFile(__dirname + '/fixtures/missing_meta_html.html', rules).
             then(function(result) {
-                should(result.content()).equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
+                should(result.report()).equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
             }).done(done);
     });
 });
@@ -71,7 +71,7 @@ describe('#checkReadableStream', () => {
 
         checks.checkReadableStream(htmlSourceStream, rules).
             then(function(result) {
-                should(result.content()).equal(null);
+                should(result.report()).equal(null);
             }).done(done);
     });
 
@@ -81,7 +81,29 @@ describe('#checkReadableStream', () => {
 
         checks.checkReadableStream(htmlSourceStream, rules).
             then(function(result) {
-                should(result.content()).equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
+                should(result.report()).equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
             }).done(done);
+    });
+});
+
+describe('#exportToFile', () => {
+    it('writes file correctly', done => {
+        var rules = ['checkImg', 'checkLink', 'checkHead', 'checkStrong', 'checkH1'],
+            htmlFile = __dirname + '/fixtures/missing_meta_html.html',
+            outputFile = __dirname + '/test_file_in_result_export.txt';
+
+        checks.start().fromFile(htmlFile).then(function(seoCheck) {
+            return seoCheck.checkImg().checkLink().checkHead().checkStrong().checkH1().toFile(outputFile);
+        }).then(function() {
+            fs.readFile(outputFile, function (err, file) {
+                if (err) {
+                    throw err; 
+                }
+                should(file.toString()).equal('<meta> with name="descriptions" is missing\n<meta> with name="keywords" is missing');
+                done();
+            });
+        }).done(function() {
+            fs.unlink(outputFile);
+        });;
     });
 });
