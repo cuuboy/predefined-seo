@@ -112,7 +112,7 @@ describe('#checkStrong', () => {
                 <strong>4</strong>\
               </div>';
 
-    rules.checkStrong(doc, 3).should.equal('This document has more than 3 <strong> tag');
+    rules.checkStrong(doc, { max: 3 }).should.equal('This document has more than 3 <strong> tag');
     done();
   });
 
@@ -124,7 +124,7 @@ describe('#checkStrong', () => {
                 <strong>4</strong>\
               </div>';
 
-    should(rules.checkStrong(doc, 10)).equal(null);
+    should(rules.checkStrong(doc, { max: 10 })).equal(null);
     done();
   });
 });
