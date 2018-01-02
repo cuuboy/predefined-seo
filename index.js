@@ -5,5 +5,8 @@ module.exports = {
     },
     checkReadableStream: function(rs, rules) {
         return checks.checkReadableStream(rs, rules);
+    },
+    start: function() {
+        return checks.start();
     }
 }

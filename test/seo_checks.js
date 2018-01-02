@@ -88,8 +88,7 @@ describe('#checkReadableStream', () => {
 
 describe('#exportToFile', () => {
     it('writes file correctly', done => {
-        var rules = ['checkImg', 'checkLink', 'checkHead', 'checkStrong', 'checkH1'],
-            htmlFile = __dirname + '/fixtures/missing_meta_html.html',
+        var htmlFile = __dirname + '/fixtures/missing_meta_html.html',
             outputFile = __dirname + '/test_file_in_result_export.txt';
 
         checks.start().fromFile(htmlFile).then(function(seoCheck) {
